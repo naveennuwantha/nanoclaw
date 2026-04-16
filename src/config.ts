@@ -10,7 +10,26 @@ const envConfig = readEnvFile([
   'ASSISTANT_HAS_OWN_NUMBER',
   'ONECLI_URL',
   'TZ',
+  'ANTHROPIC_BASE_URL',
+  'ANTHROPIC_API_KEY',
+  'CLAUDE_CODE_MODEL',
+  'ANTHROPIC_MODEL',
+  'OLLAMA_API_KEY',
+  'OPENAI_API_KEY',
 ]);
+
+export const ANTHROPIC_BASE_URL =
+  process.env.ANTHROPIC_BASE_URL || envConfig.ANTHROPIC_BASE_URL;
+export const ANTHROPIC_API_KEY =
+  process.env.ANTHROPIC_API_KEY || envConfig.ANTHROPIC_API_KEY;
+export const CLAUDE_CODE_MODEL =
+  process.env.CLAUDE_CODE_MODEL || envConfig.CLAUDE_CODE_MODEL;
+export const ANTHROPIC_MODEL =
+  process.env.ANTHROPIC_MODEL || envConfig.ANTHROPIC_MODEL;
+export const OLLAMA_API_KEY =
+  process.env.OLLAMA_API_KEY || envConfig.OLLAMA_API_KEY;
+export const OPENAI_API_KEY =
+  process.env.OPENAI_API_KEY || envConfig.OPENAI_API_KEY;
 
 export const ASSISTANT_NAME =
   process.env.ASSISTANT_NAME || envConfig.ASSISTANT_NAME || 'Andy';

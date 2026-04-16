@@ -7,6 +7,12 @@ import fs from 'fs';
 import path from 'path';
 
 import {
+  ANTHROPIC_API_KEY,
+  ANTHROPIC_BASE_URL,
+  ANTHROPIC_MODEL,
+  CLAUDE_CODE_MODEL,
+  OLLAMA_API_KEY,
+  OPENAI_API_KEY,
   CONTAINER_IMAGE,
   CONTAINER_MAX_OUTPUT_SIZE,
   CONTAINER_TIMEOUT,
@@ -251,6 +257,29 @@ async function buildContainerArgs(
 
   // Pass host timezone so container's local time matches the user's
   args.push('-e', `TZ=${TIMEZONE}`);
+
+  if (ANTHROPIC_BASE_URL) {
+    let url = ANTHROPIC_BASE_URL;
+    if (url.includes('localhost') || url.includes('127.0.0.1')) {
+      url = url.replace('localhost', 'host.docker.internal').replace('127.0.0.1', 'host.docker.internal');
+    }
+    args.push('-e', `ANTHROPIC_BASE_URL=${url}`);
+  }
+  if (ANTHROPIC_API_KEY) {
+    args.push('-e', `ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}`);
+  }
+  if (CLAUDE_CODE_MODEL) {
+    args.push('-e', `CLAUDE_CODE_MODEL=${CLAUDE_CODE_MODEL}`);
+  }
+  if (ANTHROPIC_MODEL) {
+    args.push('-e', `ANTHROPIC_MODEL=${ANTHROPIC_MODEL}`);
+  }
+  if (OLLAMA_API_KEY) {
+    args.push('-e', `OLLAMA_API_KEY=${OLLAMA_API_KEY}`);
+  }
+  if (OPENAI_API_KEY) {
+    args.push('-e', `OPENAI_API_KEY=${OPENAI_API_KEY}`);
+  }
 
   // OneCLI gateway handles credential injection — containers never see real secrets.
   // The gateway intercepts HTTPS traffic and injects API keys or OAuth tokens.
