@@ -15,7 +15,7 @@ if (fs.existsSync(envPath)) {
   });
 }
 
-const PORT = 4000;
+const PORT = 4999;
 const OLLAMA_HOST = 'ollama.com';
 
 const server = http.createServer((req, res) => {
@@ -112,6 +112,6 @@ const server = http.createServer((req, res) => {
   }
 });
 
-server.listen(PORT, () => {
+server.listen(PORT, '0.0.0.0', () => {
   console.log(`[Proxy] Anthropic-to-Ollama bridge running on http://localhost:${PORT}`);
 });
