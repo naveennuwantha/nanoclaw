@@ -1,5 +1,5 @@
-import { Channel, ChannelOpts, NewMessage } from '../types.js';
-import { registerChannel } from './registry.js';
+import { Channel, NewMessage } from '../types.js';
+import { ChannelOpts, registerChannel } from './registry.js';
 import readline from 'readline';
 import { logger } from '../logger.js';
 
